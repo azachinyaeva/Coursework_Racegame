@@ -94,10 +94,15 @@ int main() {
 		bool swapped = false;
 		do {
 			bool swapped = false;
+			Vehicle* tmp;
 			for (int i = 0; i < registered - 1; i++) {
-				if (arr[i + 1]->get_race_time(static_cast<float>(distance)) < arr[i]->get_race_time(static_cast<float>(distance))) {
-					std::swap(arr[i + 1], arr[i]);
-					swapped = true;
+				for (int j = 0; j < (registered - 1); j++) {
+					if (arr[j + 1]->get_race_time(static_cast<float>(distance)) < arr[j]->get_race_time(static_cast<float>(distance))) {
+						tmp = arr[j];
+						arr[j] = arr[j + 1];
+						arr[j + 1] = tmp;
+						swapped = true;
+					}
 				}
 			}
 		} while (swapped);
